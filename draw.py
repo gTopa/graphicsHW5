@@ -11,7 +11,7 @@ def add_circle( points, cx, cy, cz, r, step ):
     while (t<1.001):
         x=r*math.cos(2*math.pi*t)+cx
         y=r*math.sin(2*math.pi*t)+cy
-        add_edge(points, prevX+cx, prevY+cy, cz, x+cx, y+cy, cz)
+        add_edge(points, prevX, prevY, cz, x, y, cz)
         prevX=x
         prevY=y
         t+=step
