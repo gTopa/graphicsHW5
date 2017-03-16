@@ -17,10 +17,22 @@ def add_circle( points, cx, cy, cz, r, step ):
         t+=step
 
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
-    pass
+    xcoefs=generate_curve_coefs(x0,x1,x2,x3,curve_type)
+    ycoefs=generate_curve_coefs(y0,y1,y2,y3,curve_type)
+    prevx=x0
+    prevy=y0
+    curx=0
+    cury=0
+    t=step
+    while(t<1.001):
+        curx=xcoefs[0][0]*t*t*t+xcoefs[0][1]*t*t+xcoefs[0][2]*t+xcoefs[0][3]
+        cury=ycoefs[0][0]*t*t*t+ycoefs[0][1]*t*t+ycoefs[0][2]*t+ycoefs[0][3]
+        add_edge(points,prevx,prevy,0,curx,cury,0)
+        prevx=curx
+        prevy=cury
+        t+=step
 
-
-
+        
 def draw_lines( matrix, screen, color ):
     if len(matrix) < 2:
         print 'Need at least 2 points to draw'
